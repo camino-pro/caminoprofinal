@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camino Pro — Campus de Fútbol</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --accent: #1A6B3C;
+  --accent-deep: #0F4A28;
+  --accent-light: #2A8A50;
+  --accent-muted: rgba(26,107,60,0.15);
+  --cream: #F5F0E8;
+  --cream-dark: #E8E0D0;
+  --white: #FAFAFA;
+  --black: #060809;
+  --charcoal: #111618;
+  --grey: #8A9096;
+  --grey-light: #B8C0BC;
+  --gold: #C9A84C;
+  --gold-light: #E8C870;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+.cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transition: transform 0.1s ease;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(26,107,60,0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.15s ease;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.3;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(6,8,9,0.92), transparent);
+  z-index: -1;
+}
+
+.nav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.nav-logo span { color: var(--accent-light); }
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--white); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 3rem 5rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 70% 50%, rgba(26,107,60,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 20% 80%, rgba(15,74,40,0.35) 0%, transparent 60%),
+    linear-gradient(160deg, #070A08 0%, #0D1A10 40%, #060809 100%);
+}
+
+.stadium-lines {
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55%;
+  height: 90%;
+  opacity: 0.05;
+}
+.stadium-lines svg { width: 100%; height: 100%; }
+
+.hero-vertical-text {
+  position: absolute;
+  right: 3rem;
+  bottom: 8rem;
+  writing-mode: vertical-rl;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--grey);
+  opacity: 0.6;
+}
+
+.hero-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.3s ease forwards;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--accent-light);
+}
+
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(5rem, 13vw, 13rem);
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  max-width: 900px;
+  opacity: 0;
+  animation: fadeUp 1s 0.5s ease forwards;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(250,250,250,0.3);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75em;
+  display: block;
+}
+.hero-title strong { color: var(--white); display: block; }
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--grey-light);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-top: 2rem;
+  font-weight: 300;
+  opacity: 0;
+  animation: fadeUp 1s 0.7s ease forwards;
+}
+
+.hero-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 3rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.9s ease forwards;
+}
+
+.hero-cta-group { display: flex; gap: 1rem; align-items: center; }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--accent);
+  color: var(--white);
+  padding: 1rem 2.5rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-light);
+  transform: translateX(-101%);
+  transition: transform 0.4s ease;
+}
+.btn-primary:hover::before { transform: translateX(0); }
+.btn-primary span { position: relative; z-index: 1; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--grey-light);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: none;
+  transition: color 0.3s;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.btn-secondary:hover { color: var(--white); }
+
+.hero-stats { display: flex; gap: 3rem; }
+.hero-stat-number {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--white);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-top: 0.3rem;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeIn 1s 1.5s ease forwards;
+}
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--accent-light), transparent);
+  animation: scrollPulse 2s infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* MARQUEE */
+.marquee-section {
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 1rem 0;
+  background: rgba(26,107,60,0.04);
+}
+.marquee-track {
+  display: flex;
+  gap: 4rem;
+  animation: marquee 25s linear infinite;
+  white-space: nowrap;
+}
+.marquee-item {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--grey);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.marquee-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* SECTIONS */
+.section { padding: 7rem 3rem; max-width: 1200px; margin: 0 auto; }
+.section-full { padding: 7rem 3rem; }
+
+.label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.label::before { content: ''; width: 24px; height: 1px; background: var(--accent-light); }
+
+.display-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.8rem, 6vw, 6rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.display-title em {
+  font-style: italic;
+  font-weight: 300;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--grey-light);
+}
+
+/* QUE ES */
+.que-es-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  margin-top: 4rem;
+}
+.que-es-text p {
+  color: var(--grey-light);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}
+.que-es-text p strong { color: var(--white); font-weight: 500; }
+
+.que-es-visual { position: relative; aspect-ratio: 3/4; }
+.visual-block {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-deep) 0%, rgba(26,107,60,0.25) 100%);
+  border: 1px solid rgba(26,107,60,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.visual-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent, transparent 30px, rgba(26,107,60,0.06) 30px, rgba(26,107,60,0.06) 31px);
+}
+.visual-number {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 14rem;
+  color: rgba(26,107,60,0.15);
+  line-height: 1;
+  user-select: none;
+}
+.visual-accent {
+  position: absolute;
+  bottom: -1rem;
+  right: -1rem;
+  width: 60%;
+  height: 40%;
+  background: var(--accent);
+  opacity: 0.1;
+}
+
+/* EXPERIENCIA */
+.exp-section {
+  background: linear-gradient(180deg, transparent, rgba(26,107,60,0.04) 30%, rgba(26,107,60,0.06) 70%, transparent);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.05);
+  margin-top: 4rem;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.exp-item {
+  background: var(--black);
+  padding: 2.5rem;
+  transition: background 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.exp-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+  transform-origin: left;
+}
+.exp-item:hover { background: rgba(26,107,60,0.07); }
+.exp-item:hover::before { transform: scaleX(1); }
+.exp-number {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 3.5rem;
+  color: rgba(26,107,60,0.2);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.exp-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ESTADIO */
+.estadio-section { max-width: 1200px; margin: 0 auto; padding: 7rem 3rem; }
+.estadio-inner {
+  background: linear-gradient(135deg, rgba(15,74,40,0.6) 0%, rgba(10,18,12,1) 60%);
+  border: 1px solid rgba(26,107,60,0.3);
+  padding: 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.estadio-inner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(26,107,60,0.2) 0%, transparent 65%);
+}
+.estadio-inner::after {
+  content: 'ESTADIO';
+  position: absolute;
+  bottom: -2rem; right: -1rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 12rem;
+  color: rgba(255,255,255,0.02);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.estadio-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 3rem;
+}
+
+.estadio-photos-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+  margin-top: 2rem;
+}
+
+.estadio-photo {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(26,107,60,0.2);
+}
+.estadio-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+  filter: brightness(0.85) saturate(0.9);
+}
+.estadio-photo:hover img { transform: scale(1.04); }
+
+.estadio-photo.tall { aspect-ratio: 16/10; }
+.estadio-photo.portrait { aspect-ratio: 3/4; }
+
+.estadio-photo-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(6,8,9,0.85), transparent);
+  padding: 1.5rem 1rem 0.8rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+}
+
+.estadio-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--cream);
+}
+.estadio-quote strong {
+  font-weight: 600;
+  font-style: normal;
+  color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.55em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 1.5rem;
+}
+
+.estadio-details { display: flex; flex-direction: column; gap: 1rem; }
+.estadio-detail {
+  padding: 1.2rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+}
+.estadio-detail-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 0.3rem;
+}
+.estadio-detail-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* PERFIL */
+.perfil-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem 7rem;
+}
+.perfil-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 3rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(26,107,60,0.04);
+}
+.perfil-photo {
+  width: 160px;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid rgba(26,107,60,0.3);
+  flex-shrink: 0;
+}
+.perfil-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: brightness(0.9) saturate(0.85);
+}
+.perfil-text-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 0.4rem;
+}
+.perfil-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  margin-bottom: 0.8rem;
+}
+.perfil-desc {
+  font-size: 0.9rem;
+  color: var(--grey-light);
+  line-height: 1.6;
+  max-width: 500px;
+}
+.perfil-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.perfil-stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--accent-light);
+  line-height: 1;
+}
+.perfil-stat-lbl {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-top: 0.2rem;
+}
+
+/* INCLUYE */
+.incluye-section { background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.04); }
+.incluye-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 4rem;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.incluye-item {
+  padding: 2rem 2.5rem;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  transition: background 0.3s;
+}
+.incluye-item:hover { background: rgba(26,107,60,0.06); }
+.incluye-item:nth-child(even) { border-right: none; }
+.incluye-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(26,107,60,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent-light);
+  font-size: 1rem;
+}
+.incluye-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.incluye-desc { font-size: 0.82rem; color: var(--grey); line-height: 1.5; }
+
+/* CUPOS */
+.cupos-section {
+  background: var(--accent-deep);
+  border-top: 1px solid rgba(26,107,60,0.4);
+  border-bottom: 1px solid rgba(26,107,60,0.4);
+  padding: 5rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cupos-section::before {
+  content: 'EXCLUSIVO';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 18rem;
+  color: rgba(255,255,255,0.02);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.cupos-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+.cupos-number {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 8rem;
+  line-height: 1;
+  color: rgba(255,255,255,0.1);
+  margin-bottom: -1rem;
+}
+.cupos-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+.cupos-desc { font-size: 0.9rem; color: rgba(245,240,232,0.6); line-height: 1.7; margin-bottom: 2.5rem; }
+
+/* RESERVAS */
+.reservas-section { max-width: 1200px; margin: 0 auto; padding: 7rem 3rem; }
+.reservas-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 4rem;
+}
+.reservas-note { font-size: 0.9rem; color: var(--grey-light); line-height: 1.7; }
+.reservas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+.reserva-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(26,107,60,0.1) 0%, rgba(10,18,12,0.8) 100%);
+  border: 1px solid rgba(26,107,60,0.22);
+  padding: 3rem;
+  overflow: hidden;
+  transition: border-color 0.4s, transform 0.4s;
+}
+.reserva-card:hover { border-color: rgba(26,107,60,0.65); transform: translateY(-4px); }
+.reserva-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent), var(--accent-light));
+}
+.reserva-card.featured {
+  background: linear-gradient(135deg, rgba(26,107,60,0.2) 0%, rgba(15,74,40,0.5) 100%);
+  border-color: rgba(26,107,60,0.45);
+}
+
+.reserva-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: var(--white);
+  padding: 0.25rem 0.9rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.reserva-badge-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(26,107,60,0.5);
+  color: var(--accent-light);
+  padding: 0.25rem 0.9rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.reserva-edition {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 0.5rem;
+}
+.reserva-date {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 3.5rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+.reserva-month {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+  margin-bottom: 2rem;
+}
+.reserva-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.reserva-detail-row { display: flex; justify-content: space-between; align-items: center; }
+.reserva-detail-key { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+.reserva-detail-val { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+
+.spots-bar { background: rgba(255,255,255,0.06); height: 3px; margin-bottom: 0.5rem; overflow: hidden; }
+.spots-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--accent), var(--accent-light));
+  transition: width 1s ease;
+}
+.spots-text { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.08em; margin-bottom: 2rem; }
+.spots-text strong { color: var(--accent-light); }
+
+.btn-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1.1rem 2rem;
+  background: var(--accent);
+  color: var(--white);
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  border: 1px solid transparent;
+}
+.btn-whatsapp::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-light), #1E8A4A);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.btn-whatsapp:hover {
+  border-color: var(--accent-light);
+  box-shadow: 0 8px 40px rgba(26,107,60,0.5), inset 0 0 30px rgba(255,255,255,0.05);
+  transform: translateY(-1px);
+}
+.btn-whatsapp:hover::before { opacity: 1; }
+.btn-whatsapp-content { position: relative; z-index: 1; display: flex; align-items: center; gap: 0.75rem; }
+.wa-icon { width: 20px; height: 20px; flex-shrink: 0; }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.footer-logo span { color: var(--accent-light); }
+.footer-copy { font-size: 0.75rem; color: var(--grey); letter-spacing: 0.1em; }
+.footer-social { display: flex; gap: 1.5rem; }
+.footer-social a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey);
+  text-decoration: none;
+  transition: color 0.3s;
+  cursor: none;
+}
+.footer-social a:hover { color: var(--white); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+@media (max-width: 768px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { padding: 0 1.5rem 4rem; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
+  .hero-stats { gap: 2rem; }
+  .hero-vertical-text { display: none; }
+  .section { padding: 5rem 1.5rem; }
+  .section-full { padding: 5rem 1.5rem; }
+  .que-es-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .que-es-visual { display: none; }
+  .exp-grid { grid-template-columns: 1fr; }
+  .estadio-inner { padding: 2rem; }
+  .estadio-main-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .estadio-photos-grid { grid-template-columns: 1fr; }
+  .perfil-inner { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem; }
+  .perfil-photo { width: 100%; height: 200px; max-width: 160px; }
+  .perfil-stats { flex-wrap: wrap; gap: 1rem; }
+  .perfil-name { font-size: 1.8rem; }
+  .incluye-list { grid-template-columns: 1fr; }
+  .incluye-item:nth-child(even) { border-right: 1px solid rgba(255,255,255,0.06); }
+  .reservas-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .reservas-grid { grid-template-columns: 1fr; }
+  .cupos-number { font-size: 5rem; }
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="nav-logo">Camino<span>Pro</span></div>
+  <ul class="nav-links">
+    <li><a href="#campus">Campus</a></li>
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#estadio">Estadio</a></li>
+    <li><a href="#reservas">Reservas</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="stadium-lines">
+    <svg viewBox="0 0 600 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="596" height="496" stroke="white" stroke-width="1.5"/>
+      <line x1="300" y1="0" x2="300" y2="500" stroke="white" stroke-width="1.5"/>
+      <circle cx="300" cy="250" r="80" stroke="white" stroke-width="1.5"/>
+      <circle cx="300" cy="250" r="4" fill="white"/>
+      <rect x="2" y="160" width="90" height="180" stroke="white" stroke-width="1.5"/>
+      <rect x="508" y="160" width="90" height="180" stroke="white" stroke-width="1.5"/>
+      <rect x="2" y="195" width="35" height="110" stroke="white" stroke-width="1.5"/>
+      <rect x="563" y="195" width="35" height="110" stroke="white" stroke-width="1.5"/>
+      <path d="M92 160 Q130 250 92 340" stroke="white" stroke-width="1.5" fill="none"/>
+      <path d="M508 160 Q470 250 508 340" stroke="white" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+  <div class="hero-vertical-text">Estadio España — Deportivo Español</div>
+  <div class="hero-eyebrow">Campus de Fútbol</div>
+  <h1 class="hero-title">
+    <em>Tu momento</em>
+    <strong>Empieza Acá</strong>
+  </h1>
+  <p class="hero-subtitle">Mucho más que fútbol. Dos días de entrenamiento, mentalidad competitiva y experiencias que ayudan al jugador a crecer dentro y fuera de la cancha.</p>
+  <div class="hero-bottom">
+    <div class="hero-cta-group">
+      <a href="#reservas" class="btn-primary"><span>Reservar lugar</span></a>
+      <a href="#campus" class="btn-secondary">Ver programa →</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-number">2</div><div class="hero-stat-label">Días intensivos</div></div>
+      <div><div class="hero-stat-number">80</div><div class="hero-stat-label">Cupos máximos</div></div>
+      <div><div class="hero-stat-number">750K</div><div class="hero-stat-label">Comunidad</div></div>
+    </div>
+  </div>
+  <div class="scroll-indicator"><div class="scroll-line"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item"><div class="marquee-dot"></div>Entrenamiento Profesional</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Estadio España</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Cupos Limitados</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Julio — Agosto 2026</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>11 a 16 Años</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Fútbol Élite</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Deportivo Español</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Experiencia Única</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Entrenamiento Profesional</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Estadio España</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Cupos Limitados</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Julio — Agosto 2026</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>11 a 16 Años</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Fútbol Élite</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Deportivo Español</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Experiencia Única</div>
+  </div>
+</div>
+
+<!-- QUE ES -->
+<div id="campus">
+<div class="section">
+  <div class="label reveal">Sobre el campus</div>
+  <div class="que-es-grid">
+    <div>
+      <h2 class="display-title reveal reveal-delay-1">No es<br><em>una escuelita</em><br>de fútbol</h2>
+      <div class="que-es-text" style="margin-top: 2.5rem;">
+        <p class="reveal reveal-delay-2">El Campus Camino Pro es una experiencia de entrenamiento diseñada para jugadores de 11 a 16 años que quieren mejorar de verdad. Dos días completos en un estadio profesional, con metodología de élite.</p>
+        <p class="reveal reveal-delay-3">Cada sesión está diseñada con <strong>propósito y precisión</strong>. No hay tiempo muerto. No hay ejercicios genéricos. Cada minuto está pensado para que el jugador salga diferente a como entró.</p>
+        <p class="reveal reveal-delay-4">Organizado por <strong>Francisco Kranevitter</strong> — futbolista profesional y creador de contenido con más de 750.000 seguidores en el mundo del fútbol.</p>
+      </div>
+    </div>
+    <div class="que-es-visual reveal reveal-delay-2">
+      <div class="visual-block" style="padding:0; overflow:hidden;">
+        <img src="https://res.cloudinary.com/dwypb7yjf/image/upload/v1779806581/848a7d65-d18d-4f5b-a23d-82c66e8d2f43_yx4uey.png" alt="Entrenamiento Campus Camino Pro" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(0.9);">
+      </div>
+      <div class="visual-accent"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- EXPERIENCIA -->
+<div id="experiencia" class="exp-section section-full">
+<div class="section">
+  <div class="label reveal">Lo que van a vivir</div>
+  <h2 class="display-title reveal reveal-delay-1">Dos días<br>que no<br><em>se olvidan</em></h2>
+  <div class="exp-grid">
+    <div class="exp-item reveal">
+      <div class="exp-number">01</div>
+      <div class="exp-title">Técnica Real</div>
+    </div>
+    <div class="exp-item reveal reveal-delay-1">
+      <div class="exp-number">02</div>
+      <div class="exp-title">Informe Individual</div>
+    </div>
+    <div class="exp-item reveal reveal-delay-2">
+      <div class="exp-number">03</div>
+      <div class="exp-title">Equipación Incluida</div>
+    </div>
+    <div class="exp-item reveal reveal-delay-3">
+      <div class="exp-number">04</div>
+      <div class="exp-title">Experiencia Filmada y Fotografiada</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ESTADIO -->
+<div id="estadio">
+<div class="estadio-section">
+  <div class="estadio-inner reveal">
+    <div class="estadio-main-grid">
+      <div>
+        <div class="label" style="margin-bottom: 2rem;">El escenario</div>
+        <blockquote class="estadio-quote">
+          "Hay algo que te pasa cuando entrás a una cancha profesional. El pasto, las tribunas, el silencio antes de arrancar."
+          <strong>— Estadio España, Club Deportivo Español</strong>
+        </blockquote>
+      </div>
+      <div class="estadio-details">
+        <div class="estadio-detail">
+          <div class="estadio-detail-label">Sede oficial</div>
+          <div class="estadio-detail-value">Estadio España</div>
+        </div>
+        <div class="estadio-detail">
+          <div class="estadio-detail-label">Club</div>
+          <div class="estadio-detail-value">Deportivo Español</div>
+        </div>
+        <div class="estadio-detail">
+          <div class="estadio-detail-label">Capacidad</div>
+          <div class="estadio-detail-value">35.000 personas</div>
+        </div>
+        <div class="estadio-detail">
+          <div class="estadio-detail-label">Superficie</div>
+          <div class="estadio-detail-value">Césped profesional</div>
+        </div>
+      </div>
+    </div>
+    <div class="estadio-photos-grid">
+      <div class="estadio-photo tall">
+        <img src="https://res.cloudinary.com/dwypb7yjf/image/upload/v1779806581/5QhEvPj_a383ck.jpg" alt="Vista aérea Estadio España">
+        <div class="estadio-photo-caption">Vista aérea — Estadio España</div>
+      </div>
+      <div class="estadio-photo portrait">
+        <img src="https://res.cloudinary.com/dwypb7yjf/image/upload/v1779806580/Estadio_Espa%C3%B1a_Platea_Roja_Amarilla_dfit36.jpg" alt="Bandera de córner Estadio España">
+        <div class="estadio-photo-caption">Estadio España — CDE</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PERFIL -->
+<div class="perfil-section">
+  <div class="perfil-inner reveal">
+    <div class="perfil-photo">
+      <img src="https://res.cloudinary.com/dwypb7yjf/image/upload/v1779806581/IMG_5763_2_epmxnp.jpg" alt="Francisco Kranevitter">
+    </div>
+    <div>
+      <div class="perfil-text-label">Tu entrenador</div>
+      <div class="perfil-name">Francisco Kranevitter</div>
+      <p class="perfil-desc">Futbolista profesional, ex Deportivo Español, y creador de contenido de fútbol con más de 750.000 seguidores. Va a estar los 2 días con vos.</p>
+      <div class="perfil-stats">
+        <div><div class="perfil-stat-num">300K</div><div class="perfil-stat-lbl">Instagram</div></div>
+        <div><div class="perfil-stat-num">200K</div><div class="perfil-stat-lbl">TikTok</div></div>
+        <div><div class="perfil-stat-num">100K</div><div class="perfil-stat-lbl">YouTube</div></div>
+        <div><div class="perfil-stat-num">750K+</div><div class="perfil-stat-lbl">Comunidad total</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INCLUYE -->
+<div class="incluye-section section-full">
+<div class="section">
+  <div class="label reveal">Todo incluido</div>
+  <h2 class="display-title reveal reveal-delay-1">Cada detalle<br><em>pensado</em></h2>
+  <div class="incluye-list">
+    <div class="incluye-item reveal">
+      <div class="incluye-icon">🏟️</div>
+      <div>
+        <div class="incluye-title">Cancha profesional</div>
+        <div class="incluye-desc">2 días de entrenamiento en un estadio profesional con capacidad para 35.000 personas.</div>
+      </div>
+    </div>
+    <div class="incluye-item reveal reveal-delay-1">
+      <div class="incluye-icon">👕</div>
+      <div>
+        <div class="incluye-title">Equipación</div>
+        <div class="incluye-desc">Es tuya, te la llevás a casa como recuerdo.</div>
+      </div>
+    </div>
+    <div class="incluye-item reveal reveal-delay-2">
+      <div class="incluye-icon">📋</div>
+      <div>
+        <div class="incluye-title">Informe individual</div>
+        <div class="incluye-desc">Análisis personalizado de tu nivel actual y qué mejorar.</div>
+      </div>
+    </div>
+    <div class="incluye-item reveal reveal-delay-3">
+      <div class="incluye-icon">📜</div>
+      <div>
+        <div class="incluye-title">Diploma oficial</div>
+        <div class="incluye-desc">Certificado firmado con tu nombre.</div>
+      </div>
+    </div>
+    <div class="incluye-item reveal">
+      <div class="incluye-icon">📱</div>
+      <div>
+        <div class="incluye-title">Seguimiento 30 días</div>
+        <div class="incluye-desc">Grupo exclusivo con tips semanales post campus.</div>
+      </div>
+    </div>
+    <div class="incluye-item reveal reveal-delay-1">
+      <div class="incluye-icon">🎯</div>
+      <div>
+        <div class="incluye-title">Atención personalizada</div>
+        <div class="incluye-desc">Grupos reducidos para que cada jugador reciba corrección real.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CUPOS -->
+<div class="cupos-section">
+  <div class="cupos-inner reveal">
+    <div class="cupos-number">80</div>
+    <h2 class="cupos-title">Cupos limitados.<br>Sin excepciones.</h2>
+    <p class="cupos-desc">El campus está diseñado para garantizar atención personalizada. No son 200 chicos en una cancha. Son grupos reducidos donde cada jugador recibe corrección real, atención real y resultados reales.</p>
+    <a href="#reservas" class="btn-primary" style="display: inline-flex; margin: 0 auto;"><span>Ver fechas disponibles →</span></a>
+  </div>
+</div>
+
+<!-- RESERVAS -->
+<div id="reservas">
+<div class="reservas-section">
+  <div class="reservas-header">
+    <div>
+      <div class="label reveal">Fechas 2026</div>
+      <h2 class="display-title reveal reveal-delay-1">Elegí<br>tu<br><em>fecha</em></h2>
+    </div>
+    <div class="reservas-note reveal reveal-delay-2">
+      La reserva se confirma con una seña. Los cupos son limitados y se asignan por orden de pago. Una vez confirmado el cupo, recibís toda la información logística por WhatsApp.
+    </div>
+  </div>
+  <div class="reservas-grid">
+    <div class="reserva-card featured reveal">
+      <div class="reserva-badge">● Próximo</div>
+      <div class="reserva-edition">Campus #1 — Edición Invierno</div>
+      <div class="reserva-date">18 &amp; 19</div>
+      <div class="reserva-month">Julio 2026</div>
+      <div class="reserva-details">
+        <div class="reserva-detail-row"><span class="reserva-detail-key">Sede</span><span class="reserva-detail-val">Estadio España</span></div>
+        <div class="reserva-detail-row"><span class="reserva-detail-key">Grupos</span><span class="reserva-detail-val">11–13 / 14–16 años</span></div>
+        <div class="reserva-detail-row"><span class="reserva-detail-key">Duración</span><span class="reserva-detail-val">2:30 hs por grupo</span></div>
+        <div class="reserva-detail-row"><span class="reserva-detail-key">Precio</span><span class="reserva-detail-val">$80.000 ARS</span></div>
+      </div>
+      <div class="spots-bar"><div class="spots-fill" style="width: 70%"></div></div>
+      <div class="spots-text">Quedan <strong>24 lugares disponibles</strong></div>
+      <a href="https://wa.me/5491173584818?text=Hola%2C%20estoy%20interesado%20en%20acceder%20al%20campus%20de%20f%C3%BAtbol%20en%20el%20estadio%20profesional." class="btn-whatsapp" target="_blank">
+        <div class="btn-whatsapp-content">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Reservar por WhatsApp
+        </div>
+      </a>
+    </div>
+    <div class="reserva-card reveal reveal-delay-1">
+      <div class="reserva-badge-outline">Próximamente</div>
+      <div class="reserva-edition">Campus #2 — Edición Invierno</div>
+      <div class="reserva-date">15 &amp; 16</div>
+      <div class="reserva-month">Agosto 2026</div>
+      <div class="reserva-details">
+        <div class="reserva-detail-row"><span class="reserva-detail-key">Sede</span><span class="reserva-detail-val">Estadio España</span></div>
+        <div class="reserva-detail-row"><span class="reserva-detail-key">Grupos</span><span class="reserva-detail-val">11–13 / 14–16 años</span></div>
+        <div class="reserva-detail-row"><span class="reserva-detail-key">Duración</span><span class="reserva-detail-val">2:30 hs por grupo</span></div>
+        <div class="reserva-detail-row"><span class="reserva-detail-key">Precio</span><span class="reserva-detail-val">$90.000 ARS</span></div>
+      </div>
+      <div class="spots-bar"><div class="spots-fill" style="width: 20%"></div></div>
+      <div class="spots-text">Anotate en la <strong>lista de espera</strong></div>
+      <a href="https://wa.me/5491173584818?text=Hola%2C%20estoy%20interesado%20en%20acceder%20al%20campus%20de%20f%C3%BAtbol%20en%20el%20estadio%20profesional." class="btn-whatsapp" target="_blank">
+        <div class="btn-whatsapp-content">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Anotarme en lista de espera
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer>
+  <div class="footer-logo">Camino<span>Pro</span></div>
+  <div class="footer-copy">© 2026 — Campus de Fútbol</div>
+  <div class="footer-social">
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">YouTube</a>
+  </div>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX - 4 + 'px';
+  cursor.style.top = mouseY - 4 + 'px';
+});
+function animateRing() {
+  ringX += (mouseX - ringX - 16) * 0.12;
+  ringY += (mouseY - ringY - 16) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; cursorRing.style.transform = 'scale(1.5)'; cursorRing.style.borderColor = 'rgba(26,107,60,0.9)'; });
+  el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; cursorRing.style.transform = 'scale(1)'; cursorRing.style.borderColor = 'rgba(26,107,60,0.6)'; });
+});
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
