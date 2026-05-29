@@ -1,170 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Camino Pro — Campus de Fútbol</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-:root {
-  --accent: #1A6B3C;
-  --accent-deep: #0F4A28;
-  --accent-light: #2A8A50;
-  --accent-muted: rgba(26,107,60,0.15);
-  --cream: #F5F0E8;
-  --cream-dark: #E8E0D0;
-  --white: #FAFAFA;
-  --black: #060809;
-  --charcoal: #111618;
-  --grey: #8A9096;
-  --grey-light: #B8C0BC;
-  --gold: #C9A84C;
-  --gold-light: #E8C870;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--black);
-  color: var(--white);
-  font-family: 'Barlow', sans-serif;
-  font-weight: 300;
-  overflow-x: hidden;
-  cursor: none;
-}
-
-.cursor {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  background: var(--accent-light);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transition: transform 0.1s ease;
-  mix-blend-mode: difference;
-}
-.cursor-ring {
-  position: fixed;
-  width: 32px;
-  height: 32px;
-  border: 1px solid rgba(26,107,60,0.6);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transition: all 0.15s ease;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9998;
-  opacity: 0.3;
-}
-
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 1.5rem 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-nav::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(6,8,9,0.92), transparent);
-  z-index: -1;
-}
-
-.nav-logo {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 1.3rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--white);
-}
-.nav-logo span { color: var(--accent-light); }
-
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a {
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--grey-light);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-.nav-links a:hover { color: var(--white); }
-
-/* HERO */
-.hero {
-  min-height: 100vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 3rem 5rem;
-  overflow: hidden;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 80% at 70% 50%, rgba(26,107,60,0.18) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 50% at 20% 80%, rgba(15,74,40,0.35) 0%, transparent 60%),
-    linear-gradient(160deg, #070A08 0%, #0D1A10 40%, #060809 100%);
-}
-
-.stadium-lines {
-  position: absolute;
-  right: -5%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 55%;
-  height: 90%;
-  opacity: 0.05;
-}
-.stadium-lines svg { width: 100%; height: 100%; }
-
-.hero-vertical-text {
-  position: absolute;
-  right: 3rem;
-  bottom: 8rem;
-  writing-mode: vertical-rl;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--grey);
-  opacity: 0.6;
-}
-
-.hero-eyebrow {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--accent-light);
-  margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeUp 1s 0.3s ease forwards;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.hero-eyebrow::before {
   content: '';
   width: 40px;
   height: 1px;
@@ -308,7 +142,7 @@ nav::after {
   border-top: 1px solid rgba(255,255,255,0.05);
   border-bottom: 1px solid rgba(255,255,255,0.05);
   padding: 1rem 0;
-  background: rgba(26,107,60,0.04);
+  background: rgba(184,150,62,0.04);
 }
 .marquee-track {
   display: flex;
@@ -425,7 +259,7 @@ nav::after {
 
 /* EXPERIENCIA */
 .exp-section {
-  background: linear-gradient(180deg, transparent, rgba(26,107,60,0.04) 30%, rgba(26,107,60,0.06) 70%, transparent);
+  background: linear-gradient(180deg, transparent, rgba(184,150,62,0.04) 30%, rgba(184,150,62,0.06) 70%, transparent);
   border-top: 1px solid rgba(255,255,255,0.04);
   border-bottom: 1px solid rgba(255,255,255,0.04);
 }
@@ -454,13 +288,13 @@ nav::after {
   transition: transform 0.4s ease;
   transform-origin: left;
 }
-.exp-item:hover { background: rgba(26,107,60,0.07); }
+.exp-item:hover { background: rgba(184,150,62,0.06); }
 .exp-item:hover::before { transform: scaleX(1); }
 .exp-number {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
   font-size: 3.5rem;
-  color: rgba(26,107,60,0.2);
+  color: rgba(184,150,62,0.2);
   line-height: 1;
   margin-bottom: 1.5rem;
 }
@@ -475,8 +309,8 @@ nav::after {
 /* ESTADIO */
 .estadio-section { max-width: 1200px; margin: 0 auto; padding: 7rem 3rem; }
 .estadio-inner {
-  background: linear-gradient(135deg, rgba(15,74,40,0.6) 0%, rgba(10,18,12,1) 60%);
-  border: 1px solid rgba(26,107,60,0.3);
+  background: linear-gradient(135deg, rgba(26,20,8,0.8) 0%, rgba(6,6,8,1) 60%);
+  border: 1px solid rgba(184,150,62,0.2);
   padding: 5rem;
   position: relative;
   overflow: hidden;
@@ -488,7 +322,7 @@ nav::after {
   right: -20%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(26,107,60,0.2) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(184,150,62,0.15) 0%, transparent 65%);
 }
 .estadio-inner::after {
   content: 'ESTADIO';
@@ -524,7 +358,7 @@ nav::after {
 .estadio-photo {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(26,107,60,0.2);
+  border: 1px solid rgba(184,150,62,0.15);
 }
 .estadio-photo img {
   width: 100%;
@@ -607,13 +441,13 @@ nav::after {
   align-items: center;
   padding: 3rem;
   border: 1px solid rgba(255,255,255,0.06);
-  background: rgba(26,107,60,0.04);
+  background: rgba(184,150,62,0.04);
 }
 .perfil-photo {
   width: 160px;
   height: 200px;
   overflow: hidden;
-  border: 1px solid rgba(26,107,60,0.3);
+  border: 1px solid rgba(184,150,62,0.3);
   flex-shrink: 0;
 }
 .perfil-photo img {
@@ -686,12 +520,12 @@ nav::after {
   align-items: flex-start;
   transition: background 0.3s;
 }
-.incluye-item:hover { background: rgba(26,107,60,0.06); }
+.incluye-item:hover { background: rgba(184,150,62,0.05); }
 .incluye-item:nth-child(even) { border-right: none; }
 .incluye-icon {
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(26,107,60,0.4);
+  border: 1px solid rgba(184,150,62,0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -712,8 +546,8 @@ nav::after {
 /* CUPOS */
 .cupos-section {
   background: var(--accent-deep);
-  border-top: 1px solid rgba(26,107,60,0.4);
-  border-bottom: 1px solid rgba(26,107,60,0.4);
+  border-top: 1px solid rgba(184,150,62,0.3);
+  border-bottom: 1px solid rgba(184,150,62,0.3);
   padding: 5rem 3rem;
   text-align: center;
   position: relative;
@@ -766,13 +600,13 @@ nav::after {
 
 .reserva-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(26,107,60,0.1) 0%, rgba(10,18,12,0.8) 100%);
-  border: 1px solid rgba(26,107,60,0.22);
+  background: linear-gradient(135deg, rgba(184,150,62,0.08) 0%, rgba(6,6,8,0.9) 100%);
+  border: 1px solid rgba(184,150,62,0.18);
   padding: 3rem;
   overflow: hidden;
   transition: border-color 0.4s, transform 0.4s;
 }
-.reserva-card:hover { border-color: rgba(26,107,60,0.65); transform: translateY(-4px); }
+.reserva-card:hover { border-color: rgba(212,168,67,0.6); transform: translateY(-4px); }
 .reserva-card::before {
   content: '';
   position: absolute;
@@ -781,8 +615,8 @@ nav::after {
   background: linear-gradient(to right, var(--accent), var(--accent-light));
 }
 .reserva-card.featured {
-  background: linear-gradient(135deg, rgba(26,107,60,0.2) 0%, rgba(15,74,40,0.5) 100%);
-  border-color: rgba(26,107,60,0.45);
+  background: linear-gradient(135deg, rgba(184,150,62,0.15) 0%, rgba(26,20,8,0.6) 100%);
+  border-color: rgba(184,150,62,0.4);
 }
 
 .reserva-badge {
@@ -803,7 +637,7 @@ nav::after {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid rgba(26,107,60,0.5);
+  border: 1px solid rgba(184,150,62,0.4);
   color: var(--accent-light);
   padding: 0.25rem 0.9rem;
   font-family: 'Barlow Condensed', sans-serif;
@@ -886,13 +720,13 @@ nav::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--accent-light), #1E8A4A);
+  background: linear-gradient(135deg, var(--accent-light), #C49A30);
   opacity: 0;
   transition: opacity 0.3s;
 }
 .btn-whatsapp:hover {
   border-color: var(--accent-light);
-  box-shadow: 0 8px 40px rgba(26,107,60,0.5), inset 0 0 30px rgba(255,255,255,0.05);
+  box-shadow: 0 8px 40px rgba(184,150,62,0.4), inset 0 0 30px rgba(255,255,255,0.05);
   transform: translateY(-1px);
 }
 .btn-whatsapp:hover::before { opacity: 1; }
@@ -966,6 +800,164 @@ footer {
   .cupos-number { font-size: 5rem; }
   footer { flex-direction: column; gap: 1.5rem; text-align: center; }
 }
+
+/* FAQ */
+.faq-section {
+  background: rgba(255,255,255,0.01);
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.faq-list {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.faq-item:last-child { border-bottom: none; }
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1.8rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  cursor: none;
+  text-align: left;
+  transition: background 0.3s;
+}
+.faq-question:hover { background: rgba(184,150,62,0.04); }
+
+.faq-question-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.faq-icon {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(184,150,62,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent-light);
+  font-size: 1.2rem;
+  transition: transform 0.3s, background 0.3s;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  padding: 0 2.5rem;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding: 0 2.5rem 1.8rem;
+}
+
+.faq-answer p {
+  font-size: 0.95rem;
+  color: var(--grey-light);
+  line-height: 1.7;
+}
+
+/* CONTACTO */
+.contacto-section {
+  background: linear-gradient(135deg, rgba(26,20,8,0.6) 0%, rgba(6,6,9,1) 60%);
+  border-top: 1px solid rgba(184,150,62,0.15);
+  padding: 6rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.contacto-section::before {
+  content: 'CONTACTO';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 14rem;
+  color: rgba(255,255,255,0.02);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.contacto-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.contacto-card {
+  border: 1px solid rgba(184,150,62,0.2);
+  padding: 2rem;
+  text-decoration: none;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(0,0,0,0.3);
+}
+.contacto-card:hover {
+  border-color: var(--accent-light);
+  background: rgba(184,150,62,0.06);
+  transform: translateY(-3px);
+}
+.contacto-card-icon { font-size: 1.8rem; }
+.contacto-card-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+}
+.contacto-card-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--white);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 768px) {
+  .faq-question { padding: 1.5rem; }
+  .faq-answer { padding: 0 1.5rem; }
+  .faq-item.open .faq-answer { padding: 0 1.5rem 1.5rem; }
+  .faq-question-text { font-size: 0.88rem; }
+  .contacto-grid { grid-template-columns: 1fr; }
+  .contacto-section { padding: 5rem 1.5rem; }
+}
 </style>
 </head>
 <body>
@@ -974,7 +966,10 @@ footer {
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav>
-  <div class="nav-logo">Camino<span>Pro</span></div>
+  <div class="nav-logo" style="display:flex;align-items:center;gap:0.6rem;">
+    <img src="https://res.cloudinary.com/dwypb7yjf/image/upload/v1779807574/logo_etykdf.png" alt="Camino Pro" style="height:32px;width:auto;object-fit:contain;">
+    Camino<span>Pro</span>
+  </div>
   <ul class="nav-links">
     <li><a href="#campus">Campus</a></li>
     <li><a href="#experiencia">Experiencia</a></li>
@@ -1240,7 +1235,7 @@ footer {
       <div class="reserva-details">
         <div class="reserva-detail-row"><span class="reserva-detail-key">Sede</span><span class="reserva-detail-val">Estadio España</span></div>
         <div class="reserva-detail-row"><span class="reserva-detail-key">Grupos</span><span class="reserva-detail-val">11–13 / 14–16 años</span></div>
-        <div class="reserva-detail-row"><span class="reserva-detail-key">Duración</span><span class="reserva-detail-val">2:30 hs por grupo</span></div>
+        <div class="reserva-detail-row"><span class="reserva-detail-key">Duración</span><span class="reserva-detail-val">2:30hs por día</span></div>
         <div class="reserva-detail-row"><span class="reserva-detail-key">Precio</span><span class="reserva-detail-val">$80.000 ARS</span></div>
       </div>
       <div class="spots-bar"><div class="spots-fill" style="width: 70%"></div></div>
@@ -1260,7 +1255,7 @@ footer {
       <div class="reserva-details">
         <div class="reserva-detail-row"><span class="reserva-detail-key">Sede</span><span class="reserva-detail-val">Estadio España</span></div>
         <div class="reserva-detail-row"><span class="reserva-detail-key">Grupos</span><span class="reserva-detail-val">11–13 / 14–16 años</span></div>
-        <div class="reserva-detail-row"><span class="reserva-detail-key">Duración</span><span class="reserva-detail-val">2:30 hs por grupo</span></div>
+        <div class="reserva-detail-row"><span class="reserva-detail-key">Duración</span><span class="reserva-detail-val">2:30hs por día</span></div>
         <div class="reserva-detail-row"><span class="reserva-detail-key">Precio</span><span class="reserva-detail-val">$90.000 ARS</span></div>
       </div>
       <div class="spots-bar"><div class="spots-fill" style="width: 20%"></div></div>
@@ -1274,6 +1269,120 @@ footer {
     </div>
   </div>
 </div>
+</div>
+
+
+<!-- FAQ -->
+<div class="faq-section section-full">
+<div class="section">
+  <div class="label reveal">Dudas frecuentes</div>
+  <h2 class="display-title reveal reveal-delay-1">Preguntas<br><em>frecuentes</em></h2>
+
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-question-text">¿Qué incluye el campus?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>El campus incluye los entrenamientos completos durante los dos días, acceso al estadio profesional, remera oficial del campus, cobertura de seguro durante la actividad y contenido audiovisual del evento.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-question-text">¿La camiseta está incluida?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Sí. Todos los participantes reciben la camiseta oficial del campus y pueden llevársela al finalizar la experiencia.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-question-text">¿Hay seguro?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Sí. Todos los jugadores cuentan con cobertura básica de seguro durante el desarrollo del campus para mayor tranquilidad de las familias.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-question-text">¿Qué hay que llevar?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Botines, short, medias, abrigo para el frío, botella de agua y muchas ganas de entrenar. Recomendamos venir bien alimentados e hidratados.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-question-text">¿Quiénes pueden participar?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Jugadores y jugadoras de entre 11 y 16 años, sin importar el club donde jueguen actualmente. Los grupos se organizan por edad: 11-13 y 14-16.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-question-text">¿Cómo son los entrenamientos?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Las sesiones están enfocadas en técnica, físico, mentalidad y situaciones reales de juego, buscando que cada jugador viva una experiencia intensa y profesional.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-question-text">¿Se suspende por lluvia?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>En caso de condiciones climáticas extremas se reprogramará la actividad y se informará con anticipación a todos los participantes.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-question-text">¿Los cupos son limitados?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Sí. Los cupos son limitados para garantizar entrenamientos de calidad y una atención más personalizada durante el campus.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-question-text">¿Pueden asistir los padres?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Sí, los padres pueden acompañar y observar desde los sectores habilitados del estadio.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-question-text">¿Cómo reservo mi lugar?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Realizando la reserva correspondiente a través del botón de WhatsApp. Una vez confirmado el pago de la seña, el cupo queda asegurado.</p></div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- CONTACTO -->
+<div class="contacto-section">
+  <div class="contacto-inner reveal">
+    <div class="label" style="justify-content:center;">Contacto</div>
+    <h2 class="display-title" style="margin-bottom:0.5rem;">¿Tenés alguna<br><em>pregunta?</em></h2>
+    <p style="color:var(--grey-light);font-size:0.95rem;margin-top:1rem;line-height:1.6;">Escribinos por WhatsApp o mail y te respondemos a la brevedad.</p>
+    <div class="contacto-grid">
+      <a href="https://wa.me/5491173584818?text=Hola%2C%20tengo%20una%20consulta%20sobre%20el%20Campus%20Camino%20Pro" class="contacto-card" target="_blank">
+        <div class="contacto-card-icon">📱</div>
+        <div class="contacto-card-label">WhatsApp</div>
+        <div class="contacto-card-value">+54 9 11 7358-4818</div>
+      </a>
+      <a href="mailto:panchokranevitter@gmail.com" class="contacto-card">
+        <div class="contacto-card-icon">✉️</div>
+        <div class="contacto-card-label">Email</div>
+        <div class="contacto-card-value">panchokranevitter@gmail.com</div>
+      </a>
+    </div>
+  </div>
 </div>
 
 <footer>
@@ -1304,14 +1413,25 @@ function animateRing() {
 }
 animateRing();
 document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; cursorRing.style.transform = 'scale(1.5)'; cursorRing.style.borderColor = 'rgba(26,107,60,0.9)'; });
-  el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; cursorRing.style.transform = 'scale(1)'; cursorRing.style.borderColor = 'rgba(26,107,60,0.6)'; });
+  el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; cursorRing.style.transform = 'scale(1.5)'; cursorRing.style.borderColor = 'rgba(212,168,67,0.9)'; });
+  el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; cursorRing.style.transform = 'scale(1)'; cursorRing.style.borderColor = 'rgba(184,150,62,0.5)'; });
 });
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 revealEls.forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
 </script>
 </body>
 </html>
