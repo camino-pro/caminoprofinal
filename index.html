@@ -9,14 +9,14 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --accent: #B8963E;
-  --accent-deep: #1A1408;
-  --accent-light: #D4A843;
-  --accent-muted: rgba(184,150,62,0.15);
+  --accent: #8B1A2A;
+  --accent-deep: #4A0E1A;
+  --accent-light: #A82030;
+  --accent-muted: rgba(139,26,42,0.15);
   --cream: #F5F0E8;
   --cream-dark: #E8E0D0;
   --white: #FAFAFA;
-  --black: #07070A;
+  --black: #080608;
   --charcoal: #111618;
   --grey: #8A9096;
   --grey-light: #B8C0BC;
@@ -50,7 +50,7 @@ body {
   position: fixed;
   width: 32px;
   height: 32px;
-  border: 1px solid rgba(184,150,62,0.5);
+  border: 1px solid rgba(139,26,42,0.5);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -121,9 +121,9 @@ nav::after {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 80% at 70% 50%, rgba(184,150,62,0.12) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 50% at 20% 80%, rgba(26,20,8,0.5) 0%, transparent 60%),
-    linear-gradient(160deg, #06060A 0%, #0D0C08 40%, #060609 100%);
+    linear-gradient(to bottom, rgba(8,6,8,0.55) 0%, rgba(8,6,8,0.75) 60%, rgba(8,6,8,0.95) 100%),
+    radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139,26,42,0.3) 0%, transparent 65%),
+    url('https://res.cloudinary.com/dwypb7yjf/image/upload/v1780358319/ChatGPT_Image_1_jun_2026_08_53_47_p.m._mkc00m.png') center center / cover no-repeat;
 }
 
 .stadium-lines {
@@ -308,7 +308,7 @@ nav::after {
   border-top: 1px solid rgba(255,255,255,0.05);
   border-bottom: 1px solid rgba(255,255,255,0.05);
   padding: 1rem 0;
-  background: rgba(184,150,62,0.04);
+  background: rgba(139,26,42,0.05);
 }
 .marquee-track {
   display: flex;
@@ -425,7 +425,7 @@ nav::after {
 
 /* EXPERIENCIA */
 .exp-section {
-  background: linear-gradient(180deg, transparent, rgba(184,150,62,0.04) 30%, rgba(184,150,62,0.06) 70%, transparent);
+  background: linear-gradient(180deg, transparent, rgba(139,26,42,0.05) 30%, rgba(139,26,42,0.08) 70%, transparent);
   border-top: 1px solid rgba(255,255,255,0.04);
   border-bottom: 1px solid rgba(255,255,255,0.04);
 }
@@ -454,13 +454,13 @@ nav::after {
   transition: transform 0.4s ease;
   transform-origin: left;
 }
-.exp-item:hover { background: rgba(184,150,62,0.06); }
+.exp-item:hover { background: rgba(139,26,42,0.08); }
 .exp-item:hover::before { transform: scaleX(1); }
 .exp-number {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
   font-size: 3.5rem;
-  color: rgba(184,150,62,0.2);
+  color: rgba(139,26,42,0.2);
   line-height: 1;
   margin-bottom: 1.5rem;
 }
@@ -475,8 +475,8 @@ nav::after {
 /* ESTADIO */
 .estadio-section { max-width: 1200px; margin: 0 auto; padding: 7rem 3rem; }
 .estadio-inner {
-  background: linear-gradient(135deg, rgba(26,20,8,0.8) 0%, rgba(6,6,8,1) 60%);
-  border: 1px solid rgba(184,150,62,0.2);
+  background: linear-gradient(135deg, rgba(74,14,26,0.7) 0%, rgba(6,6,8,1) 60%);
+  border: 1px solid rgba(139,26,42,0.2);
   padding: 5rem;
   position: relative;
   overflow: hidden;
@@ -488,7 +488,7 @@ nav::after {
   right: -20%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(184,150,62,0.15) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(139,26,42,0.18) 0%, transparent 65%);
 }
 .estadio-inner::after {
   content: 'ESTADIO';
@@ -524,7 +524,7 @@ nav::after {
 .estadio-photo {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(184,150,62,0.15);
+  border: 1px solid rgba(139,26,42,0.18);
 }
 .estadio-photo img {
   width: 100%;
@@ -607,13 +607,13 @@ nav::after {
   align-items: center;
   padding: 3rem;
   border: 1px solid rgba(255,255,255,0.06);
-  background: rgba(184,150,62,0.04);
+  background: rgba(139,26,42,0.05);
 }
 .perfil-photo {
   width: 160px;
   height: 200px;
   overflow: hidden;
-  border: 1px solid rgba(184,150,62,0.3);
+  border: 1px solid rgba(139,26,42,0.3);
   flex-shrink: 0;
 }
 .perfil-photo img {
@@ -686,12 +686,12 @@ nav::after {
   align-items: flex-start;
   transition: background 0.3s;
 }
-.incluye-item:hover { background: rgba(184,150,62,0.05); }
+.incluye-item:hover { background: rgba(139,26,42,0.06); }
 .incluye-item:nth-child(even) { border-right: none; }
 .incluye-icon {
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(184,150,62,0.35);
+  border: 1px solid rgba(139,26,42,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -712,8 +712,8 @@ nav::after {
 /* CUPOS */
 .cupos-section {
   background: var(--accent-deep);
-  border-top: 1px solid rgba(184,150,62,0.3);
-  border-bottom: 1px solid rgba(184,150,62,0.3);
+  border-top: 1px solid rgba(139,26,42,0.3);
+  border-bottom: 1px solid rgba(139,26,42,0.3);
   padding: 5rem 3rem;
   text-align: center;
   position: relative;
@@ -766,13 +766,13 @@ nav::after {
 
 .reserva-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(184,150,62,0.08) 0%, rgba(6,6,8,0.9) 100%);
-  border: 1px solid rgba(184,150,62,0.18);
+  background: linear-gradient(135deg, rgba(139,26,42,0.1) 0%, rgba(6,6,8,0.9) 100%);
+  border: 1px solid rgba(139,26,42,0.25);
   padding: 3rem;
   overflow: hidden;
   transition: border-color 0.4s, transform 0.4s;
 }
-.reserva-card:hover { border-color: rgba(212,168,67,0.6); transform: translateY(-4px); }
+.reserva-card:hover { border-color: rgba(168,32,48,0.7); transform: translateY(-4px); }
 .reserva-card::before {
   content: '';
   position: absolute;
@@ -781,8 +781,8 @@ nav::after {
   background: linear-gradient(to right, var(--accent), var(--accent-light));
 }
 .reserva-card.featured {
-  background: linear-gradient(135deg, rgba(184,150,62,0.15) 0%, rgba(26,20,8,0.6) 100%);
-  border-color: rgba(184,150,62,0.4);
+  background: linear-gradient(135deg, rgba(139,26,42,0.18) 0%, rgba(74,14,26,0.5) 100%);
+  border-color: rgba(139,26,42,0.4);
 }
 
 .reserva-badge {
@@ -803,7 +803,7 @@ nav::after {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid rgba(184,150,62,0.4);
+  border: 1px solid rgba(139,26,42,0.4);
   color: var(--accent-light);
   padding: 0.25rem 0.9rem;
   font-family: 'Barlow Condensed', sans-serif;
@@ -886,13 +886,13 @@ nav::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--accent-light), #C49A30);
+  background: linear-gradient(135deg, var(--accent-light), #C0283C);
   opacity: 0;
   transition: opacity 0.3s;
 }
 .btn-whatsapp:hover {
   border-color: var(--accent-light);
-  box-shadow: 0 8px 40px rgba(184,150,62,0.4), inset 0 0 30px rgba(255,255,255,0.05);
+  box-shadow: 0 8px 40px rgba(139,26,42,0.4), inset 0 0 30px rgba(255,255,255,0.05);
   transform: translateY(-1px);
 }
 .btn-whatsapp:hover::before { opacity: 1; }
@@ -999,7 +999,7 @@ footer {
   text-align: left;
   transition: background 0.3s;
 }
-.faq-question:hover { background: rgba(184,150,62,0.04); }
+.faq-question:hover { background: rgba(139,26,42,0.05); }
 
 .faq-question-text {
   font-family: 'Barlow Condensed', sans-serif;
@@ -1013,7 +1013,7 @@ footer {
 .faq-icon {
   width: 28px;
   height: 28px;
-  border: 1px solid rgba(184,150,62,0.35);
+  border: 1px solid rgba(139,26,42,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1052,8 +1052,8 @@ footer {
 
 /* CONTACTO */
 .contacto-section {
-  background: linear-gradient(135deg, rgba(26,20,8,0.6) 0%, rgba(6,6,9,1) 60%);
-  border-top: 1px solid rgba(184,150,62,0.15);
+  background: linear-gradient(135deg, rgba(74,14,26,0.5) 0%, rgba(6,6,9,1) 60%);
+  border-top: 1px solid rgba(139,26,42,0.18);
   padding: 6rem 3rem;
   text-align: center;
   position: relative;
@@ -1085,7 +1085,7 @@ footer {
   margin-top: 3rem;
 }
 .contacto-card {
-  border: 1px solid rgba(184,150,62,0.2);
+  border: 1px solid rgba(139,26,42,0.2);
   padding: 2rem;
   text-decoration: none;
   transition: border-color 0.3s, background 0.3s, transform 0.3s;
@@ -1097,7 +1097,7 @@ footer {
 }
 .contacto-card:hover {
   border-color: var(--accent-light);
-  background: rgba(184,150,62,0.06);
+  background: rgba(139,26,42,0.08);
   transform: translateY(-3px);
 }
 .contacto-card-icon { font-size: 1.8rem; }
@@ -1124,6 +1124,117 @@ footer {
   .contacto-grid { grid-template-columns: 1fr; }
   .contacto-section { padding: 5rem 1.5rem; }
 }
+
+/* COUNTDOWN */
+.countdown-bar {
+  background: var(--accent);
+  padding: 1.4rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 99;
+  border-bottom: 2px solid rgba(255,255,255,0.15);
+}
+.countdown-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.countdown-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.95);
+}
+.countdown-units {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.countdown-unit {
+  text-align: center;
+  min-width: 48px;
+}
+.countdown-number {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 2.8rem;
+  line-height: 1;
+  color: var(--white);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.countdown-unit-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-top: 0.2rem;
+}
+.countdown-sep {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 2.4rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.8rem;
+}
+.countdown-cta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  padding-bottom: 2px;
+  transition: border-color 0.3s;
+}
+.countdown-cta:hover { border-color: white; }
+
+/* FLOATING WA */
+.wa-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  padding: 0.85rem 1.4rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: none;
+}
+.wa-float:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(37,211,102,0.55);
+}
+.wa-float svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.wa-float-text { white-space: nowrap; }
+
+@media (max-width: 768px) {
+  .wa-float { bottom: 1.5rem; right: 1.5rem; padding: 0.9rem; border-radius: 50%; }
+  .wa-float-text { display: none; }
+  .countdown-inner { gap: 1rem; }
+  .countdown-number { font-size: 2rem; }
+}
 </style>
 </head>
 <body>
@@ -1132,10 +1243,7 @@ footer {
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav>
-  <div class="nav-logo" style="display:flex;align-items:center;gap:0.6rem;">
-    <img src="https://res.cloudinary.com/dwypb7yjf/image/upload/v1779807574/logo_etykdf.png" alt="Camino Pro" style="height:32px;width:auto;object-fit:contain;">
-    Camino<span>Pro</span>
-  </div>
+  <div class="nav-logo">Camino<span>Pro</span></div>
   <ul class="nav-links">
     <li><a href="#campus">Campus</a></li>
     <li><a href="#experiencia">Experiencia</a></li>
@@ -1143,6 +1251,35 @@ footer {
     <li><a href="#reservas">Reservas</a></li>
   </ul>
 </nav>
+
+<!-- COUNTDOWN BAR -->
+<div class="countdown-bar">
+  <div class="countdown-inner">
+    <div class="countdown-label">⚽ Campus #1 arranca en</div>
+    <div class="countdown-units">
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-days">--</div>
+        <div class="countdown-unit-label">Días</div>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-hours">--</div>
+        <div class="countdown-unit-label">Horas</div>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-mins">--</div>
+        <div class="countdown-unit-label">Min</div>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-secs">--</div>
+        <div class="countdown-unit-label">Seg</div>
+      </div>
+    </div>
+    <a href="#reservas" class="countdown-cta">Reservar lugar →</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1396,7 +1533,7 @@ footer {
     <div class="reserva-card featured reveal">
       <div class="reserva-badge">● Próximo</div>
       <div class="reserva-edition">Campus #1 — Edición Invierno</div>
-      <div class="reserva-date">18 &amp; 19</div>
+      <div class="reserva-date">4 &amp; 5</div>
       <div class="reserva-month">Julio 2026</div>
       <div class="reserva-details">
         <div class="reserva-detail-row"><span class="reserva-detail-key">Sede</span><span class="reserva-detail-val">Estadio España</span></div>
@@ -1406,7 +1543,7 @@ footer {
       </div>
       <div class="spots-bar"><div class="spots-fill" style="width: 70%"></div></div>
       <div class="spots-text">Quedan <strong>24 lugares disponibles</strong></div>
-      <a href="https://wa.me/5491173584818?text=Hola%2C%20estoy%20interesado%20en%20acceder%20al%20campus%20de%20f%C3%BAtbol%20en%20el%20estadio%20profesional." class="btn-whatsapp" target="_blank">
+      <a href="https://api.whatsapp.com/send/?phone=5491173584818&text=Hola%2C+tengo+una+consulta+sobre+el+Campus+Camino+Pro&type=phone_number&app_absent=0" class="btn-whatsapp" target="_blank">
         <div class="btn-whatsapp-content">
           <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Reservar por WhatsApp
@@ -1426,7 +1563,7 @@ footer {
       </div>
       <div class="spots-bar"><div class="spots-fill" style="width: 20%"></div></div>
       <div class="spots-text">Anotate en la <strong>lista de espera</strong></div>
-      <a href="https://wa.me/5491173584818?text=Hola%2C%20estoy%20interesado%20en%20acceder%20al%20campus%20de%20f%C3%BAtbol%20en%20el%20estadio%20profesional." class="btn-whatsapp" target="_blank">
+      <a href="https://api.whatsapp.com/send/?phone=5491173584818&text=Hola%2C+tengo+una+consulta+sobre+el+Campus+Camino+Pro&type=phone_number&app_absent=0" class="btn-whatsapp" target="_blank">
         <div class="btn-whatsapp-content">
           <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Anotarme en lista de espera
@@ -1446,6 +1583,14 @@ footer {
 
   <div class="faq-list">
 
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-question-text">¿Es una prueba?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>No, <strong>NO ES UNA PRUEBA</strong>, pero sí va a haber entrenadores de diversos equipos mirando el entrenamiento con la intención de buscar talento.</p></div>
+    </div>
     <div class="faq-item">
       <button class="faq-question">
         <span class="faq-question-text">¿Qué incluye el campus?</span>
@@ -1537,7 +1682,7 @@ footer {
     <h2 class="display-title" style="margin-bottom:0.5rem;">¿Tenés alguna<br><em>pregunta?</em></h2>
     <p style="color:var(--grey-light);font-size:0.95rem;margin-top:1rem;line-height:1.6;">Escribinos por WhatsApp o mail y te respondemos a la brevedad.</p>
     <div class="contacto-grid">
-      <a href="https://wa.me/5491173584818?text=Hola%2C%20tengo%20una%20consulta%20sobre%20el%20Campus%20Camino%20Pro" class="contacto-card" target="_blank">
+      <a href="https://api.whatsapp.com/send/?phone=5491173584818&text=Hola%2C+tengo+una+consulta+sobre+el+Campus+Camino+Pro&type=phone_number&app_absent=0" class="contacto-card" target="_blank">
         <div class="contacto-card-icon">📱</div>
         <div class="contacto-card-label">WhatsApp</div>
         <div class="contacto-card-value">+54 9 11 7358-4818</div>
@@ -1579,14 +1724,36 @@ function animateRing() {
 }
 animateRing();
 document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; cursorRing.style.transform = 'scale(1.5)'; cursorRing.style.borderColor = 'rgba(212,168,67,0.9)'; });
-  el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; cursorRing.style.transform = 'scale(1)'; cursorRing.style.borderColor = 'rgba(184,150,62,0.5)'; });
+  el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; cursorRing.style.transform = 'scale(1.5)'; cursorRing.style.borderColor = 'rgba(168,32,48,0.9)'; });
+  el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; cursorRing.style.transform = 'scale(1)'; cursorRing.style.borderColor = 'rgba(139,26,42,0.5)'; });
 });
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 revealEls.forEach(el => observer.observe(el));
+
+  // Countdown to July 4 2026 10:00 AM Argentina time
+  function updateCountdown() {
+    const target = new Date('2026-07-04T10:00:00-03:00');
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      document.querySelector('.countdown-bar').innerHTML = '<div class="countdown-inner"><div class="countdown-label">🏟️ ¡El campus arrancó!</div></div>';
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const secs = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
 
   // FAQ accordion
   document.querySelectorAll('.faq-question').forEach(btn => {
@@ -1599,5 +1766,14 @@ revealEls.forEach(el => observer.observe(el));
   });
 
 </script>
+
+<!-- FLOATING WA -->
+<a href="https://api.whatsapp.com/send/?phone=5491173584818&text=Hola%2C+tengo+una+consulta+sobre+el+Campus+Camino+Pro&type=phone_number&app_absent=0" class="wa-float" target="_blank" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span class="wa-float-text">Consultas</span>
+</a>
+
 </body>
 </html>
