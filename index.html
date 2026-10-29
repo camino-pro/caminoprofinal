@@ -487,7 +487,7 @@ body{
 <!-- ============ VIDEO HERO ============ -->
 <section class="vid-hero" id="inicio-vid" aria-label="Video del Campus Camino Pro">
   <div class="vid-hero__wrap">
-    <video class="vid-hero__video" autoplay muted loop playsinline preload="auto" aria-label="Highlights del Campus Camino Pro">
+    <video class="vid-hero__video" autoplay muted loop playsinline preload="none" aria-label="Highlights del Campus Camino Pro">
       <source src="https://www.dropbox.com/scl/fi/bdprr1n51sf5ljrl2wlgk/1008.mp4?rlkey=o4xawi834qbu98darpprpwz6s&st=xqiqj1b0&raw=1" type="video/mp4">
     </video>
   </div>
@@ -821,10 +821,27 @@ const CAMINO = {
   ediciones: [
     {
       numero: 3,
-      nombre: "Edición Verano",
+      nombre: "Campus + Scouting Cup",
+      estado: "proximamente",
+      inicio: null,
+      aConfirmar: false,
+      dias: [14, 15, 16, 17],
+      mes: "diciembre",
+      anio: 2026,
+      sede: "Northchamp",
+      grupos: "2:00hs de entrenamiento + Partido",
+      duracion: "4 días",
+      precio: "A confirmar",
+      cupos: 40,
+      ocupados: 40,
+      mensajeWA: "Hola, quiero anotarme en la lista de espera para el Campus + Scouting Cup del 14 al 17 de diciembre"
+    },
+    {
+      numero: 4,
+      nombre: "Campus Camino Pro",
       estado: "abierta",
-      inicio: "2026-12-12T10:00:00-03:00",
-      dias: [12, 13],
+      inicio: "2026-12-19T10:00:00-03:00",
+      dias: [19, 20],
       mes: "diciembre",
       anio: 2026,
       sede: "Estadio España",
@@ -833,24 +850,7 @@ const CAMINO = {
       precio: "$80.000 ARS",
       cupos: 40,
       ocupados: 22,
-      mensajeWA: "Hola, quiero reservar un lugar para el Campus del 12 y 13 de diciembre"
-    },
-    {
-      numero: 4,
-      nombre: "Edición Diciembre",
-      estado: "proximamente",
-      inicio: null,
-      aConfirmar: true,
-      dias: [],
-      mes: "diciembre",
-      anio: 2026,
-      sede: "Estadio España",
-      grupos: "8–10 / 11–13 / 14–16 años",
-      duracion: "2:30hs por día",
-      precio: "A confirmar",
-      cupos: 40,
-      ocupados: 0,
-      mensajeWA: "Hola, quiero anotarme en la lista de espera para el campus de diciembre"
+      mensajeWA: "Hola, quiero reservar un lugar para el Campus del 19 y 20 de diciembre"
     }
   ]
 };
