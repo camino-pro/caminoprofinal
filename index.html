@@ -316,8 +316,8 @@ body{
 .tdatos dt{color:var(--tinta-2);font-weight:560}
 .tdatos dd{font-weight:760;font-stretch:106%;text-align:right}
 .tdatos .precio dd{font-size:1.3rem;font-weight:900;font-stretch:120%}
-.quedan{margin:18px 0 20px;font-size:1.02rem}
-.quedan strong{font-weight:800}
+.quedan{display:inline-block;margin:18px 0 20px;padding:.5rem .9rem .55rem;background:var(--tinta);color:var(--amarillo);border-radius:8px;font-size:1.05rem;line-height:1.2}
+.quedan strong{font-weight:850;color:var(--amarillo)}
 .pasos{display:grid;gap:26px;margin-top:64px;counter-reset:paso}
 .pasos__t{margin-top:64px;font-size:1.5rem;font-weight:850;font-stretch:118%;line-height:1.1}
 .pasos li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
@@ -670,12 +670,6 @@ body{
       <p>El campus está diseñado para garantizar atención personalizada. No son 200 chicos en una cancha. Son grupos reducidos donde cada jugador recibe corrección real, atención real y resultados reales.</p>
       <a class="btn" href="#reservas">Ver fechas disponibles</a>
     </div>
-    <div>
-      <p class="grada__nota" id="grada-nota"><strong data-bind="cupos">40</strong> lugares por campus.</p>
-      <div class="carga" id="carga" role="progressbar" aria-valuemin="0" aria-valuemax="50" aria-valuenow="7" aria-label="Cupos ocupados"><span class="carga__fill" id="carga-fill"></span></div>
-      <p class="carga__txt" id="carga-txt"><strong>Quedan 18 cupos disponibles</strong></p>
-
-    </div>
   </div>
 </section>
 
@@ -830,7 +824,7 @@ const CAMINO = {
       mes: "diciembre",
       anio: 2026,
       sede: "Northchamp",
-      grupos: "10–17 años",
+      grupos: "10–13 / 14–17 años",
       duracion: "4 días",
       precio: "$95.000 ARS",
       cupos: 50,
