@@ -291,6 +291,16 @@ body{
 /* ---------- reservas ---------- */
 .res__cab{max-width:36em}
 .tickets{display:grid;gap:44px;margin-top:44px}
+.combo{display:grid;gap:22px;margin-top:44px;padding:26px 24px 28px;background:var(--tinta);color:#fff;border:2px solid var(--tinta);border-radius:16px;box-shadow:6px 6px 0 var(--amarillo);--foco:var(--amarillo)}
+.combo__tag{display:inline-block;padding:.3rem .75rem .36rem;background:var(--amarillo);color:var(--tinta);border-radius:6px;font-size:.92rem;font-weight:850;font-stretch:112%;line-height:1;transform:rotate(-2deg)}
+.combo__t{margin-top:14px;font-size:clamp(1.6rem,4.2vw,2.3rem);font-weight:900;font-stretch:118%;line-height:1.05;color:#fff;text-wrap:balance}
+.combo__sub{margin-top:12px;max-width:36em;font-size:1.05rem;line-height:1.45}
+.combo__nota{margin-top:8px;font-size:.92rem;opacity:.75}
+.combo__precio{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;margin-bottom:16px}
+.combo__precio s{font-size:1.3rem;font-weight:700;opacity:.6;text-decoration-thickness:2px}
+.combo__precio strong{font-size:clamp(2.2rem,6vw,3rem);font-weight:900;font-stretch:115%;line-height:1;color:var(--amarillo)}
+.combo__precio small{font-size:.45em;font-weight:800}
+@media (min-width:860px){.combo{grid-template-columns:1.3fr 1fr;align-items:center;gap:40px;padding:34px 36px}}
 .ticket{position:relative;display:flex;flex-direction:column;background:#fff;border:2px solid var(--tinta);border-radius:16px;box-shadow:var(--sombra)}
 .ticket__stub{display:grid;gap:16px;padding:22px 22px 24px;background:var(--amarillo);border-radius:14px 14px 0 0}
 .ticket--proxima .ticket__stub{background:var(--cielo-2)}
@@ -684,6 +694,18 @@ body{
         <p>Para ver las fechas y reservar, escribinos por WhatsApp al <a class="link" href="https://api.whatsapp.com/send/?phone=5491173584818&amp;text=Hola%2C+quiero+reservar+un+lugar+para+el+Campus&amp;type=phone_number&amp;app_absent=0">+54 9 11 7358-4818</a>.</p>
       </noscript>
     </div>
+    <article class="combo" aria-labelledby="h-combo">
+      <div class="combo__info">
+        <span class="combo__tag">Combo 2 campus</span>
+        <h3 class="combo__t" id="h-combo">Vení a los dos y ahorrá $35.000</h3>
+        <p class="combo__sub">Campus + Scouting Cup (14 al 17) + Campus Camino Pro (19 y 20). 6 días entrenando con nosotros.</p>
+        <p class="combo__nota">Válido para jugadores de 10 a 16 años.</p>
+      </div>
+      <div class="combo__cta">
+        <p class="combo__precio"><s>$175.000</s> <strong>$140.000 <small>ARS</small></strong></p>
+        <a class="btn btn--block btn--amarillo" href="https://api.whatsapp.com/send/?phone=5491173584818&amp;text=Hola%2C+quiero+reservar+el+combo+de+los+2+campus+%2814+al+17+y+19+y+20+de+diciembre%29&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg>Reservar el combo por WhatsApp</a>
+      </div>
+    </article>
     <h3 class="pasos__t">Así se reserva</h3>
     <ol class="pasos pasos--ok">
       <li><span class="n">1</span><p>Escribinos por WhatsApp desde el botón de la fecha que elijas.</p></li>
